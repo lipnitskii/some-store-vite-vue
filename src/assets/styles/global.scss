@@ -1,0 +1,48 @@
+@import "./fonts.scss";
+
+:root {
+  --satoshi: "Satoshi", sans-serif;
+  --clash: "Clash Display", sans-serif;
+  --dark-primary: #2a254b;
+  --primary: #4e4d93;
+  --lightgray: #f9f9f9;
+  --border-grey: #ebe8f4;
+  --border-dark: #cac6da;
+}
+
+* {
+  box-sizing: border-box;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--satoshi);
+  font-size: 16px;
+  color: #22202e;
+}
+
+b {
+  font-weight: bold;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  max-width: 1440px;
+  margin: auto;
+  padding: 0 24px;
+}
+
+.input-text {
+  height: 56px;
+  padding: 0 32px;
+  font-size: 16px;
+  border: none;
+  @media screen and (max-width: 767px) {
+    padding: 0 10px;
+  }
+}
