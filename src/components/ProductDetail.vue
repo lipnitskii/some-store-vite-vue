@@ -1,7 +1,7 @@
 <template>
     <div class="product">
       <div>
-        <img :src="product.image" :alt="product.name" />
+        <img :src="product.image" :alt="product.name" class="product-image"/>
       </div>
       <div>
         <h2 class="product-name">{{ product.name }}</h2>
@@ -44,7 +44,7 @@
   <script setup>
   import { ref } from "vue";
   import Button from "@/components/UI/Button.vue";
-/*   import { useCartStore } from "@/store/cart.js"; */
+  import { useCartStore } from "@/store/cart.js"; 
   
   const props = defineProps({
     product: {
@@ -54,17 +54,17 @@
     },
   });
   
-  //const quantity = ref(1);
- // const cartStore = useCartStore();
+  const quantity = ref(1);
+  const cartStore = useCartStore();
   
-/*   const changeQuantity = (type) => {
+   const changeQuantity = (type) => {
     if (type === "minus") {
       quantity.value === 1 ? (quantity.value = 1) : quantity.value--;
     }
     if (type === "plus") {
-      quantity.value === 3 ? (quantity.value = 3) : quantity.value++;
+      quantity.value === 9 ? (quantity.value = 9) : quantity.value++;
     }
-  }; */
+  }; 
   </script>
   
   <style lang="scss" scoped>
@@ -80,6 +80,9 @@
       margin: 0 0 16px 0;
       font-family: var(--clash);
       font-size: 36px;
+    }
+    &-image {
+        width: 100%;
     }
     &-price {
       display: block;

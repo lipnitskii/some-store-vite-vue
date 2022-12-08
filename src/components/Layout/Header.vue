@@ -20,9 +20,9 @@
           <div class="header-top-right__cart">
             <router-link to="/cart">
               <img src="/svg/header-cart.svg" alt="cart" />
-            <!--   <span class="header-top-right__count" v-if="cartStore.cart.length">
+               <span class="header-top-right__count" v-if="cartStore.cart.length">
                 {{ cartStore.cart.length }}
-              </span> -->
+              </span> 
             </router-link>
           </div>
           <div class="header-top-right__user">
@@ -55,7 +55,7 @@
   
   <script setup>
   import { ref } from "vue";
- // import { useCartStore } from "@/store/cart.js";
+  import { useCartStore } from "@/store/cart.js";
   
   const menu = [
     {
@@ -73,7 +73,7 @@
   ];
   
   const isOpenedMobileMenu = ref(false);
- // const cartStore = useCartStore();
+  const cartStore = useCartStore();
   </script>
   
   <style lang="scss" scoped>
