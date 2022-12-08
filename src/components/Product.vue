@@ -13,7 +13,7 @@
   <script setup>
   const props = defineProps({
     id: {
-      type: String,
+      type: Number,
       required: true,
     },
     img: {

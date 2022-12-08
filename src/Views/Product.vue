@@ -1,6 +1,6 @@
-<!-- <template>
+<template>
   <ProductDetail :product="currentProduct" v-if="currentProduct" />
-  <PopularProducts />
+  <PopularProducts /> 
   <AboutBrand />
   <Subscribe />
 </template>
@@ -17,11 +17,13 @@ import PopularProducts from "@/components/PopularProducts.vue";
 const route = useRoute();
 const router = useRouter();
 const productId = ref("");
-const currentProduct = ref({});
+const currentProduct = ref({}); 
 
-onMounted(async () => {
+ onMounted(async () => {
   productId.value = route.params.id;
 
   currentProduct.value = await api.getProduct(productId.value);
-});
-</script> -->
+} );
+console.log(currentProduct)
+
+</script>
