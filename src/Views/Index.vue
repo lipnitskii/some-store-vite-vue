@@ -2,7 +2,7 @@
   <div>
     <Hero />
     <AboutBrand />
-    <PopularProducts /> 
+    <PopularProducts />
     <Ideas />
     <Subscribe />
   </div>

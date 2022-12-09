@@ -1,7 +1,6 @@
 <template>
   <Loader v-if="loading" />
   <ProductDetail :product="currentProduct" v-else-if="currentProduct" />
-
   <AboutBrand />
   <Subscribe />
 </template>
@@ -18,14 +17,12 @@ import Loader from "@/components/UI/Loader.vue";
 const route = useRoute();
 const router = useRouter();
 const productId = ref("");
-const currentProduct = ref({}); 
+const currentProduct = ref({});
 const loading = ref(true);
 
- onMounted(async () => {
+onMounted(async () => {
   productId.value = route.params.id;
   currentProduct.value = await api.getProduct(productId.value);
   loading.value = false;
-} );
-console.log(currentProduct)
-
+});
 </script>

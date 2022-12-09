@@ -18,7 +18,7 @@
         <router-link to="/" class="header-logo">Logo</router-link>
         <div class="header-top-right">
           <div class="header-top-right__cart">
-            <router-link to="/cart">
+            <router-link to="/">
               <img src="/svg/header-cart.svg" alt="cart" />
                <span class="header-top-right__count" v-if="cartStore.cart.length">
                 {{ cartStore.cart.length }}
@@ -35,45 +35,40 @@
       <div class="header-menu">
         <router-link
           class="header-menu__link"
-          :to="element.path"
+          
           v-for="(element, i) of menu"
+          :to="'categories/' +  element"
           :key="i">
-          {{ element.name }}
+          {{ element }}
         </router-link>
       </div>
       <div class="header-menu-mobile" v-if="isOpenedMobileMenu">
         <router-link
           class="header-menu-mobile__link"
-          :to="element.path"
+          
           v-for="(element, i) of menu"
+          :to="'categories/' +  element"
           :key="i">
-          {{ element.name }}
+          {{ element }}
         </router-link>
       </div>
     </header>
   </template>
   
   <script setup>
-  import { ref } from "vue";
+  import { onMounted, ref } from "vue";
   import { useCartStore } from "@/store/cart.js";
+  import api from "@/api";
   
-  const menu = [
-    {
-      name: "Plant pots",
-      path: "/plant",
-    },
-    {
-      name: "Ceramics",
-      path: "/ceramics",
-    },
-    {
-      name: "Tables",
-      path: "/tables",
-    },
-  ];
+  const menu = ref([]);
   
   const isOpenedMobileMenu = ref(false);
   const cartStore = useCartStore();
+
+  onMounted(async () => {
+    menu.value = await api.getCatalog();
+    
+  });
   </script>
   
   <style lang="scss" scoped>

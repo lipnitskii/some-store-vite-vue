@@ -35,7 +35,7 @@
   .product {
     border: solid 0.5px #b3b3b3;
     border-radius: 5px;
-    
+   
     &-image {
       display: block;
       margin-bottom: 24px;
@@ -46,7 +46,7 @@
       }
     }
     &-image-item{
-        display: flex;
+    display: flex;
     justify-content: center;
     padding: 20px;
     }

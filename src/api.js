@@ -14,6 +14,27 @@ export default {
       console.log(e);
     }
   },
+  async getCatalog() {
+    try {
+      const response = await HTTP.get("/products/categories");
+      return response.data;
+    } catch (e) {
+      console.log(e);
+    }
+  },
+  async getCategories(cat) {
+    try {
+      const response = await HTTP.get(`/products/category/${cat}`, {
+        headers: {
+          Prefer: `code=200, example=Example ${cat}`,
+        },
+      });
+      console.log(response.data);
+      return response.data;
+    } catch (e) {
+      console.log(e);
+    }
+  },
   async getProduct(id) {
     try {
       const response = await HTTP.get(`/products/${id}`, {
@@ -22,7 +43,7 @@ export default {
         },
       });
       console.log(response.data);
-      return response.data;
+   
     } catch (e) {
       console.log(e);
     }
