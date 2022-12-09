@@ -26,7 +26,7 @@
             </router-link>
           </div>
           <div class="header-top-right__user">
-            <router-link to="/user">
+            <router-link to="/">
               <img src="/svg/header-user.svg" alt="user" />
             </router-link>
           </div>
@@ -37,7 +37,7 @@
           class="header-menu__link"
           
           v-for="(element, i) of menu"
-          :to="'categories/' +  element"
+          :to="'/categories/' +  element"
           :key="i">
           {{ element }}
         </router-link>
@@ -47,7 +47,7 @@
           class="header-menu-mobile__link"
           
           v-for="(element, i) of menu"
-          :to="'categories/' +  element"
+          :to="'/categories/' +  element"
           :key="i">
           {{ element }}
         </router-link>
