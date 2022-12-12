@@ -3,7 +3,7 @@
 
   <div class="category-title">{{ route.params.cat }}:</div>
   <div class="category">
-    <CategoryDetail v-for="category of currentCategories" :category="category" />
+    <CategoryDetail v-for="category in currentCategories" :category="category" />
   </div>
   <AboutBrand />
   <Subscribe />
@@ -23,6 +23,7 @@ const router = useRouter();
 const categoriesId = ref("");
 const currentCategories = ref({});
 const loading = ref(true);
+
 
 onMounted(async () => {
   categoriesId.value = route.params.cat;
