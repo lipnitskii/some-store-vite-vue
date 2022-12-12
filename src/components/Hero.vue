@@ -6,7 +6,7 @@
         link="#"
         colorLink="lightgray"
       />
-      <img class="hero-image" src="/img/hero.jpg" alt="hero" />
+      <img class="hero-image" src="/img/hero2.jpg" alt="hero" />
     </div>
   </template>
   
@@ -16,7 +16,7 @@
   
   <style lang="scss" scoped>
   .hero {
-    background: url("/img/hero.jpg");
+    background: url("/img/hero2.jpg");
     height: 704px;
     background-size: cover;
     display: flex;

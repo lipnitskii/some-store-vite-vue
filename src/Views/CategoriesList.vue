@@ -1,9 +1,12 @@
 <template>
   <Loader v-if="loading" />
-
   <div class="category-title">{{ route.params.cat }}:</div>
   <div class="category">
-    <CategoryDetail v-for="category in currentCategories" :category="category" />
+    <CategoryDetail 
+    v-if="loading == false"
+      v-for="category in currentCategories"
+      :category="category"
+    />
   </div>
   <AboutBrand />
   <Subscribe />
@@ -24,6 +27,12 @@ const categoriesId = ref("");
 const currentCategories = ref({});
 const loading = ref(true);
 
+router.afterEach(async () => {
+  loading.value = true
+  categoriesId.value = route.params.cat;
+  currentCategories.value = await api.getCategories(categoriesId.value);
+  loading.value = false
+});
 
 onMounted(async () => {
   categoriesId.value = route.params.cat;
@@ -41,7 +50,6 @@ onMounted(async () => {
   flex-wrap: wrap;
   gap: 20px;
   margin-bottom: 65px;
-  
 
   &-title {
     font-size: xx-large;
@@ -56,11 +64,10 @@ onMounted(async () => {
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    
+
     text-align: center;
     padding-bottom: 20px;
     margin: 0px auto;
-    }
   }
-
+}
 </style>
