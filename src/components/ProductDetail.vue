@@ -11,10 +11,10 @@
         <div v-html="product.description"></div>
       </div>
       <div class="product-block">
-        <span class="product-block__title">Рейтинг:</span>
+        <span class="product-block__title">Rating:</span>
         <span class="product-param">
-          <p>{{ product?.rating?.rate }}</p>
-          <p>{{ product?.rating?.count }} голосов</p>
+          <p>{{ product?.rating?.rate }} &#128077;</p>
+          <p>{{ product?.rating?.count }} Votes</p>
         </span>
       </div>
       <div class="product-block">

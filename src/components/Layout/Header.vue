@@ -9,16 +9,40 @@
             class="header-top__icon"
           />
         </div>
-        <div
-          class="header-top-mobile-menu"
-          @click="isOpenedMobileMenu = !isOpenedMobileMenu"
-        >
+        <div class="header-top-right__like header-mobile-icons">
+          <router-link to="/">
+            <img src="/svg/header-like.svg" alt="user" />
+          </router-link>
+        </div>
+        <div class="header-top-right__cart header-mobile-icons">
+          <router-link to="/">
+            <img src="/svg/header-cart.svg" alt="cart" />
+            <span class="header-top-right__count" v-if="cartStore.cart.length">
+              {{ cartStore.cart.length }}
+            </span>
+          </router-link>
+        </div>
+        <div class="header-top-right__user header-mobile-icons">
+          <router-link to="/">
+            <img src="/svg/header-user.svg" alt="user" />
+          </router-link>
+        </div>
+      </div>
+      <div
+        class="header-top-mobile-menu"
+        @click="isOpenedMobileMenu = !isOpenedMobileMenu"
+      >
+        <div>
           <img src="/svg/menu.svg" alt="menu" class="header-top__icon" />
         </div>
       </div>
-
       <router-link to="/" class="header-logo">Logo</router-link>
       <div class="header-top-right">
+        <div class="header-top-right__like">
+          <router-link to="/">
+            <img src="/svg/header-like.svg" alt="user" />
+          </router-link>
+        </div>
         <div class="header-top-right__cart">
           <router-link to="/">
             <img src="/svg/header-cart.svg" alt="cart" />
@@ -34,7 +58,6 @@
         </div>
       </div>
     </div>
-
     <div class="header-menu">
       <router-link
         class="header-menu__link"
@@ -127,6 +150,12 @@ export default {
     height: auto;
   }
 
+  &-mobile-icons {
+    @media screen and (min-width: 767px) {
+      display: none;
+    }
+  }
+
   &-hidden {
     box-shadow: none;
     transform: translate3d(0, -100%, 0);
@@ -139,6 +168,11 @@ export default {
     align-items: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     margin: 0 28px;
+
+    &-search {
+      width: 16px;
+      height: 18px;
+    }
 
     @media screen and (max-width: 767px) {
       margin: 0;
@@ -183,6 +217,14 @@ export default {
       &__cart {
         margin-right: 16px;
         position: relative;
+      }
+
+      &__like {
+        width: 14px;
+        height: 24px;
+        margin-right: 16px;
+        position: relative;
+        margin-left: 16px;
       }
 
       &__count {
