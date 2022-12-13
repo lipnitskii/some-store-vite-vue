@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pt-nav">
     <Hero />
     <AboutBrand />
     <PopularProducts />
@@ -15,3 +15,4 @@ import Ideas from "@/components/Ideas.vue";
 import Subscribe from "@/components/Subscribe.vue";
 import PopularProducts from "@/components/PopularProducts.vue";
 </script>
+

@@ -1,8 +1,10 @@
 <template>
+  <div class="pt-nav">
   <Loader v-if="loading" />
   <ProductDetail :product="currentProduct" v-else-if="currentProduct" />
   <AboutBrand />
   <Subscribe />
+</div>
 </template>
 
 <script setup>

@@ -1,4 +1,5 @@
 <template>
+  <div class="pt-nav">
   <Loader v-if="loading" />
   <div class="category-title">{{ route.params.cat }}:</div>
   <div class="category">
@@ -10,6 +11,7 @@
   </div>
   <AboutBrand />
   <Subscribe />
+</div>
 </template>
 
 <script setup>

@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header" :class="{ 'header-hidden': !showHeader }">
     <div class="header-top">
       <div class="header-top-left">
         <div class="header-top-search">
@@ -39,7 +39,6 @@
       <router-link
         class="header-menu__link"
         v-for="(element, i) of menu"
-        
         :to="'/categories/' + element"
         :key="i"
       >
@@ -57,10 +56,11 @@
         {{ element }}
       </router-link>
     </div>
-    <div class="header-menu-modal"
-    v-if="isOpenedMobileMenu"
-    @click="isOpenedMobileMenu = !isOpenedMobileMenu"
-     />
+    <div
+      class="header-menu-modal"
+      v-if="isOpenedMobileMenu"
+      @click="isOpenedMobileMenu = !isOpenedMobileMenu"
+    />
   </header>
 </template>
 
@@ -68,25 +68,70 @@
 import { onMounted, ref } from "vue";
 import { useCartStore } from "@/store/cart.js";
 import api from "@/api";
-
 const menu = ref([]);
-
 const isOpenedMobileMenu = ref(false);
 const cartStore = useCartStore();
-
 onMounted(async () => {
   menu.value = await api.getCatalog();
 });
 </script>
+<script>
+export default {
+  data() {
+    return {
+      show: false,
+      showHeader: true,
+      lastScrollPosition: 0,
+      scrollValue: 0,
+      infmodal: false,
+    };
+  },
+  mounted() {
+    this.lastScrollPosition = window.pageYOffset;
+    window.addEventListener("scroll", this.onScroll);
+    const viewportMeta = document.createElement("meta");
+    viewportMeta.name = "viewport";
+    viewportMeta.content = "width=device-width, initial-scale=1";
+    document.head.appendChild(viewportMeta);
+  },
+  methods: {
+    onScroll() {
+      if (window.pageYOffset < 10) {
+        return;
+      }
+      if (Math.abs(window.pageYOffset - this.lastScrollPosition) < 0) {
+        return;
+      }
+      this.showHeader = window.pageYOffset < this.lastScrollPosition;
+      this.lastScrollPosition = window.pageYOffset;
+    },
+    beforeDestroy() {
+      window.removeEventListener("scroll", this.onScroll);
+    },
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .header {
+  width: 100%;
+  max-width: 1440px;
+  padding-right: 48px;
   height: 132px;
   background: #fff;
-  position: relative;
+  position: fixed;
+  transform: translate3d(0, 0, 0);
+  transition: 0.3s all ease-out;
+
   @media screen and (max-width: 767px) {
     height: auto;
   }
+
+  &-hidden {
+    box-shadow: none;
+    transform: translate3d(0, -100%, 0);
+  }
+
   &-top {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -94,6 +139,7 @@ onMounted(async () => {
     align-items: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     margin: 0 28px;
+
     @media screen and (max-width: 767px) {
       margin: 0;
       border: none;
@@ -102,35 +148,43 @@ onMounted(async () => {
       display: flex;
       justify-content: space-between;
     }
+
     &__icon {
       display: block;
     }
+
     &-left {
       display: flex;
       align-items: center;
+
       @media screen and (max-width: 767px) {
         order: 2;
       }
     }
+
     &-mobile-menu {
       display: none;
       margin-left: 16px;
+
       @media screen and (max-width: 767px) {
         display: block;
-      
       }
     }
+
     &-right {
       display: flex;
       align-items: center;
       justify-content: flex-end;
+
       @media screen and (max-width: 767px) {
         display: none;
       }
+
       &__cart {
         margin-right: 16px;
         position: relative;
       }
+
       &__count {
         position: absolute;
         width: 15px;
@@ -148,21 +202,25 @@ onMounted(async () => {
       }
     }
   }
+
   &-logo {
     color: #22202e;
     font-size: 24px;
     text-decoration: none;
     font-family: var(--clash);
     text-align: center;
+
     @media screen and (max-width: 767px) {
       order: 1;
     }
+
     &:hover {
       text-decoration: underline;
     }
   }
+
   &-menu-modal {
-    height: 100hw;
+    height: 1000px;
     width: 100vw;
     opacity: 0;
     position: fixed;
@@ -172,39 +230,46 @@ onMounted(async () => {
     left: 0;
     z-index: 1;
   }
+
   &-menu {
     height: 62px;
     display: flex;
     justify-content: center;
     align-items: center;
+
     @media screen and (max-width: 767px) {
       display: none;
     }
+
     &__link {
       margin: 0 22px;
       color: var(--gray);
       text-decoration: none;
+
       &:hover {
         text-decoration: underline;
       }
     }
+
     &-mobile {
-      position: absolute;
+      position: relative;
       background: #fff;
       padding: 40px 24px;
-      top: 60px;
       border: 1px solid;
       width: 100%;
       padding: 10px;
       z-index: 2;
+
       &__link {
         display: block;
         margin-bottom: 20px;
         color: var(--gray);
         text-decoration: none;
+
         &:last-child {
           margin-bottom: 0;
         }
+
         &:hover {
           text-decoration: underline;
         }
