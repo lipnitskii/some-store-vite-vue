@@ -10,6 +10,7 @@ export const useCartStore = defineStore("cartStore", {
       if (cartIndex === -1) {
         this.cart.push({ ...product, count });
       }
+     
     },
   },
 });

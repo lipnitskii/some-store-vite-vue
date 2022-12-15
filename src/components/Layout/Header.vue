@@ -1,5 +1,6 @@
 <template>
   <header class="header" :class="{ 'header-hidden': !showHeader }">
+  
     <div class="header-top">
       <div class="header-top-left">
         <div class="header-top-search">
@@ -15,7 +16,7 @@
           </router-link>
         </div>
         <div class="header-top-right__cart header-mobile-icons">
-          <router-link to="/">
+          <router-link to="/cart">
             <img src="/svg/header-cart.svg" alt="cart" />
             <span class="header-top-right__count" v-if="cartStore.cart.length">
               {{ cartStore.cart.length }}
@@ -44,7 +45,7 @@
           </router-link>
         </div>
         <div class="header-top-right__cart">
-          <router-link to="/">
+          <router-link to="/cart">
             <img src="/svg/header-cart.svg" alt="cart" />
             <span class="header-top-right__count" v-if="cartStore.cart.length">
               {{ cartStore.cart.length }}
